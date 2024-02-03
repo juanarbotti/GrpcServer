@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package user;
+
+// General messages and responses
+
+message Empty {} // A generic empty response
+
+message Id { // A generic ID object
+    int32 id = 1;
+}
+
+message Element {
+    string text = 1;
+}
+
+// User messages and responses
+
+// Messages
+message msg_user {
+    optional int32 id = 1; // If set, system will try to edit user.
+    string surname = 2;
+    string name = 3;
+    optional string dob = 4; // It's not recommended to mess with dates and time on GRPC. I prefer to manage as strings, so I recommend that.
+    optional string gender = 5;
+    string username = 6;
+    string email = 7;
+    optional string password = 8; // it will complain if you are creating a user ('id 'not present) and you don't specify a passsword
+}
+
+message msg_list {
+    int32 limit = 1;
+
+}
+
+// Responses
+message response_user {
+    int32 id = 1;
+    string surname = 2;
+    string name = 3;
+    string dob = 4;
+    string gender = 5;
+    string username = 6;
+    string email = 7;
+}
+
+message response_user_list {
+    repeated response_user users = 1; // returns response_user multiple times
+}
+
+service User {
+
+    // Creates or modify users, whether or not 'id' is specified.
+    rpc CreateUpdate(msg_user) returns (Id);
+
+    // Get user
+    rpc Get(Id) returns (response_user);
+
+    // Delete user
+    rpc Delete(Id) returns (Empty);
+
+    // Search by username
+    rpc Search(Element) returns (response_user_list);
+
+}
