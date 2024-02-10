@@ -1,0 +1,5 @@
+docker-compose.yaml
+Dockerfile
+src/gen_proto.py
+venv/
+**/__pycache__/

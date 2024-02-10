@@ -23,6 +23,7 @@ def create_db():
         db.Base.metadata.create_all(db.engine)
     except Exception as exc:
         error = "Critical failure trying to create database: {}".format(str(exc))
+        print(error)
         sys.exit(1)
 
 # The GRPC Server
