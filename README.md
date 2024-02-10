@@ -63,7 +63,7 @@ To try the server, I recommend using BloomRPC. Despite no longer being actively 
     python src/run.py
 ```
 
-The defult port is 50051. You should connect to: http://localhost/50051 with your favourite gRPC client (I use BloomGRPC as I wrote above). If you're more begginer than I, please, do not try to access the url using a browser (it will not work) :).
+The defult port is 50051. You should connect to: http://localhost:50051 with your favourite gRPC client (I use BloomGRPC as I wrote above). If you're more begginer than I, please, do not try to access the url using a browser (it will not work) :).
 
 ## Docker Image
 Clone the repository and run:
